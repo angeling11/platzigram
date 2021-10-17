@@ -45,11 +45,3 @@ posts = [
 # Create your views here.
 def list_posts(request):
     return render(request, 'feed.html', { 'posts': posts})
-    # content = []
-    # for post in posts:
-    #     content.append("""
-    #         <p><strong>{name}</strong></p>
-    #         <p><small>{user} - {timestamp}</small></p>
-    #         <figure><img src='{picture}'></figure>
-    #     """.format(**post))
-    # return HttpResponse('<br \>'.join(content))
