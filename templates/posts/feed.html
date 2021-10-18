@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+    <title>Platzigram feed</title>
+{% endblock %}
+
+{% block container %}
+    <br />
+    <h1>Platzigram</h1>
+    <br />
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for post in posts %}
+        <div class="col">
+            <div class="card">
+                <img src=" {{ post.photo }}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text"><img src="{{ post.author.picture }}" class="rounded-circle" style="width: 48px; margin: 4px">{{ post.author.name }}</p>
+                    <p class="card-footer"><small class="text-muted">{{ post.timestamp }}</small></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
