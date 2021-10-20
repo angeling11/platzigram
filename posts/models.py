@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+# Creates the model for the posts
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     profile = models.ForeignKey('users.Profile', on_delete=models.CASCADE)

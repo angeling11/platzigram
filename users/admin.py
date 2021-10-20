@@ -3,7 +3,7 @@ from users.models import Profile
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 
-# Register your models here.
+# Register the profile model in the admin panel
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('pk', 'user', 'phone_number', 'website', 'picture')
