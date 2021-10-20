@@ -10,6 +10,13 @@ from users.models import Profile
 # Exceptions
 from django.db.utils import IntegrityError
 
+
+# Update users's profile view
+@login_required
+def update_profile(request):
+    return render(request, 'users/update_profile.html')
+
+
 # User login view
 def login_view(request):
     if request.method == 'POST':
@@ -23,6 +30,7 @@ def login_view(request):
         else:
             return render(request, 'users/login.html', {'error': 'Invalid username or password.'})
     return render(request, 'users/login.html')
+
 
 # User signup view
 def signup_view(request):
@@ -48,6 +56,7 @@ def signup_view(request):
 
         return redirect('login')
     return render(request, 'users/signup.html')
+
 
 # User logout view
 @login_required
