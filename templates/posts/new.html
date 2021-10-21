@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block head_contant %}
+    <title>Create new Post</title>
+{% endblock%}
+
+{% block head_content %}
+    <div class="row justify-content-md-center">
+        <div class="col-6 pt-3 pb-3" id="profile-box">
+            <h4 class="mb-3">Post a new Photo!</h4>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <input type="hidden" name="user" value="{{ user.pk }}" />
+                <input type="hidden" name="profile" value="{{ profile.pk }}">
+
+                {# Title field #}
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title:</label>
+                    <input
+                        class="form-control {% if form.title.errors %}is-invalid{% endif %}"
+                        type="text"
+                        name="title"
+                        placeholder="Title"
+                        value="{% if form.errors %}{{ form.title.value }}{% endif %}"
+                    />
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}{{ error }}{% endfor %}
+                    </div>
+                </div>
+                {# Photo field #}
+                <div class="mb-3">
+                    <label for="photo" class="form-label">Choose your photo:</label>
+                    <input
+                        class="form-control {% if form.photo.errors %}is-invalid{% endif %}"
+                        type="file"
+                        name="photo"
+                    />
+                    <div class="invalid-feedback">
+                        {% for error in form.photo.errors %}{{ error }}{% endfor %}
+                    </div>
+                </div>
+                {# submit button #}
+                <div class="d-grid gap-2 mt-4">
+                    <button class="btn btn-primary" type="submit">Publish</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock%}
