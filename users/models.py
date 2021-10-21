@@ -1,4 +1,7 @@
+# Django
 from django.db import models
+
+# Models
 from django.contrib.auth.models import User
 
 # Creates the model for the users's profile

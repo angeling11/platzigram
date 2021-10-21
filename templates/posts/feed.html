@@ -1,24 +1,34 @@
 {% extends "base.html" %}
 
 {% block head_content %}
-    <title>Platzigram feed</title>
+    <title>Platzigram</title>
 {% endblock %}
 
+{% load humanize %}
 {% block container %}
-    <br /><br />
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+<div class="container">
+    <div class="row">
         {% for post in posts %}
-        <div class="col">
-            <div class="card">
-                <img src=" {{ post.photo }}" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">{{ post.title }}</h5>
-                    <p class="card-text"><img src="{{ post.author.picture }}" class="rounded-circle" style="width: 48px; margin: 4px">{{ post.author.name }}</p>
-                    <p class="card-footer"><small class="text-muted">{{ post.timestamp }}</small></p>
-                </div>
+        <div class="col-sm-12 col-md-8 offset-md-2 mt-5 p-0 post-container">
+            <div class="card pt-3 ps-3 pb-1">
+                <p class="card-text">
+                    <img src="{{ post.profile.picture.url }}" alt="@{{ post.user.username }}" height="35" class="rounded-circle me-3">
+                    <span style="margin-top: 5px;">{{ post.user.get_full_name }}</span>
+                </p>
             </div>
+
+            <img src=" {{ post.photo.url }}" alt="{{ post.title }}" style="width: 100%;">
+
+            <p class="mt-1 ms-2">
+                <a href="" style="color: #000; font-size: 20px;"><i class="far fa-heart"></i></a>
+                <span>11 likes</span>
+            </p>
+            <p class="ms-2 mt-0 mb-2">
+                <b>{{ post.title }}</b> - <small>{{ post.created|naturaltime }}</small>
+            </p>            
         </div>
         {% endfor %}
     </div>
     <br />
+</div>
 {% endblock %}

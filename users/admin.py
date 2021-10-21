@@ -1,6 +1,9 @@
+# Django
 from django.contrib import admin
-from users.models import Profile
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+
+# Models
+from users.models import Profile
 from django.contrib.auth.models import User
 
 # Register the profile model in the admin panel

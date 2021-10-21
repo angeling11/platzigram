@@ -1,5 +1,7 @@
+# Django
 from django import forms
 
+# Profile form
 class ProfileForm(forms.Form):
     website = forms.URLField(max_length=200, required=True)
     biography = forms.CharField(max_length=500, required=False)
