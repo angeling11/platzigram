@@ -1,9 +1,96 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block head_content %}
     <title>@{{ request.user.username }} | Update Profile</title>
 {% endblock %}
 
 {% block container %}
-    <h1 class="mt-5">@{{ request.user.username }}</h1>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-6 p-4" id="profile-box">
+            {% for message in messages %}
+                <p class="alert alert-success">{{ message }}</p>
+            {% endfor %}
+
+            <form action="{% url 'update_profile' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        {% if profile.picture %}
+                            <img src="{{ profile.picture.url }}" height="50" class="rounded-circle" />
+                        {% else %}
+                            <img src="{% static 'img/default-profile.png' %}" height="50" class="rounded-circle" />
+                        {% endif %}
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h5 class="ml-4">@{{ user.username }} | {{ user.get_full_name }}</h5>
+                        <p class="ml-4">
+                            <input type="file" name="picture" />
+                        </p>
+                    </div>
+                </div>
+                {% for error in form.picture.errors %}
+                    <div class="alert alert-danger">
+                        <b>Picture: </b>{{ error}}
+                    </div>
+                {% endfor %}
+
+                <hr /><br />
+
+                {# Website field #}
+                <div class="mb-3">
+                    <label for="website" class="form-label">Website</label>
+                    <input
+                        type="text"
+                        class="form-control {% if form.website.errors %}is-invalid{% endif %}"
+                        name="website"
+                        placeholder="http://example.com"
+                        value="{% if form.errors %}{{ form.website.value }}{% else %}{{ profile.website }}{% endif %}"
+                    />
+                    <div class="invalid-feedback">
+                        {% for error in form.website.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                </div>
+                {# Biography field #}
+                <div class="mb-3">
+                    <label for="biography" class="form-label">Biography</label>
+                    <textarea
+                        class="form-control {% if form.biography.errors %}is-invalid{% endif %}"
+                        name="biography"
+                        rows="5"
+                    >{% if form.errors %}{{ form.biography.value }}{% else %}{{ profile.biography }}{% endif %}</textarea>
+                    <div class="invalid-feedback">
+                        {% for error in form.biography.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                </div>
+                {# Phone number field #}
+                <div class="mb-3">
+                    <label for="phone_number" class="form-label">Phone number</label>
+                    <input
+                        type="text"
+                        class="form-control {% if form.phone_number.errors %}is-invalid{% endif %}"
+                        name="phone_number"
+                        placeholder="(123) 456-7890"
+                        value="{% if form.errors %}{{ form.phone_number.value }}{% else %}{{ profile.phone_number }}{% endif %}"
+                    />
+                    <div class="invalid-feedback">
+                        {% for error in form.phone_number.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                </div>
+                {# submit button #}
+                <div class="d-grid gap-2 mt-4">
+                    <button class="btn btn-primary" type="submit">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
