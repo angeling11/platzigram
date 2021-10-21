@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block container %}
+<div class="container">
     {% if error %}
         <p class="alert alert-danger">{{ error }}</p>
     {% endif%}
@@ -22,4 +23,7 @@
             <button class="btn btn-primary" type="submit">Sign In</button>
         </div>
     </form>
+
+    <p class="mt-4">Don't have an account yet? <a href="{% url 'signup' %}">Sign up here.</a></p>
+</div>
 {% endblock %}
