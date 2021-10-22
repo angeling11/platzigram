@@ -12,7 +12,9 @@
         <div class="col-sm-12 col-md-8 offset-md-2 mt-5 p-0 post-container">
             <div class="card pt-3 ps-3 pb-1">
                 <p class="card-text">
-                    <img src="{{ post.profile.picture.url }}" alt="@{{ post.user.username }}" height="35" class="rounded-circle me-3">
+                    <a href="{% url 'users:detail' post.user.username %}">
+                        <img src="{{ post.profile.picture.url }}" alt="@{{ post.user.username }}" height="35" class="rounded-circle me-3">
+                    </a>
                     <span style="margin-top: 5px;">{{ post.user.get_full_name }}</span>
                 </p>
             </div>

@@ -10,7 +10,7 @@
         <p class="alert alert-danger">{{ error }}</p>
     {% endif%}
 
-    <form action="{% url 'login' %}" method="post">
+    <form action="{% url 'users:login' %}" method="post">
         {% csrf_token %}
         <div class="mb-3">
             <input type="text" name="username" placeholder="Username" class="form-control">
@@ -24,6 +24,6 @@
         </div>
     </form>
 
-    <p class="mt-4">Don't have an account yet? <a href="{% url 'signup' %}">Sign up here.</a></p>
+    <p class="mt-4">Don't have an account yet? <a href="{% url 'users:signup' %}">Sign up here.</a></p>
 </div>
 {% endblock %}
