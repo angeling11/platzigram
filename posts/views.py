@@ -15,22 +15,14 @@ class PostFeedView(LoginRequiredMixin, ListView):
     template_name = 'posts/feed.html'
     model = Post
     ordering = ('-created')
-    paginate_by = 8
+    paginate_by = 24
     context_object_name = 'posts'
 
 
 class PostDetailView(LoginRequiredMixin, DetailView):
     template_name = 'posts/detail.html'
-    slug_field = 'id'
-    slug_url_kwarg = 'id'
     queryset = Post.objects.all()
     context_object_name = 'post'
-
-    def get_context_data(self, **kwargs):
-        context =  super().get_context_data(**kwargs)
-        post = self.get_object()
-        context['post'] = Post.objects.get(id=post.id)
-        return context
 
 
 # Create new post
