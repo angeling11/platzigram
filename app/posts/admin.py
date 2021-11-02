@@ -2,9 +2,10 @@
 from django.contrib import admin
 from posts.models import Post
 
-# Register the post model in the admin panel
+
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
+    """Register the post model in the admin panel."""
     list_display = ('pk', 'title', 'photo', 'user')
     list_display_links = ('pk', 'user')
     list_editable = ('title',)

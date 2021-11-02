@@ -4,8 +4,9 @@ from django.db import models
 # Models
 from django.contrib.auth.models import User
 
-# Creates the model for the users's profile
+
 class Profile(models.Model):
+    """Creates the model for the users's profile."""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     website = models.URLField(max_length=200, blank=True)

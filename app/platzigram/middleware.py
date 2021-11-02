@@ -2,12 +2,10 @@
 from django.shortcuts import redirect
 from django.urls import reverse
 
-# Middleware catalog
+
 class ProfileCompletionMiddleware:
     """Profile completion middleware.
-
-    Ensure every user has their picture and biography.
-    """
+    Ensure every user has their picture and biography."""
     def __init__(self, get_response):
         # One-time configuration and initialization.
         self.get_response = get_response

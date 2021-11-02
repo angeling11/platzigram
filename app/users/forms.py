@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 from users.models import Profile
 
 
-# Sign up form
 class SignupForm(forms.Form):
+    """Sign up form."""
     username = forms.CharField(min_length=4, max_length=50)
     password = forms.CharField(max_length=70, widget=forms.PasswordInput)
     password_confirmation = forms.CharField(max_length=70, widget=forms.PasswordInput)
@@ -34,7 +34,7 @@ class SignupForm(forms.Form):
         if password != password_confirmation:
             raise forms.ValidationError('Password do not match.')
         return data
-    
+
     def save(self):
         """Create user and profile."""
         data = self.cleaned_data

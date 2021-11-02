@@ -1,12 +1,8 @@
 # Django imports
-from django.contrib import auth
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, FormView, UpdateView
-from django.contrib.auth import  views as auth_views
+from django.contrib.auth import views as auth_views
 
 # Models
 from django.contrib.auth.models import User
@@ -26,7 +22,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'user'
 
     def get_context_data(self, **kwargs):
-        context =  super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         user = self.get_object()
         context['posts'] = Post.objects.filter(user=user).order_by('-created')
         return context
@@ -52,7 +48,7 @@ class UpdateProfileView(LoginRequiredMixin, UpdateView):
     def get_object(self):
         """Return user's profile."""
         return self.request.user.profile
-    
+
     def get_success_url(self):
         """Return to user's profile."""
         username = self.object.user.username
