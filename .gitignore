@@ -3,3 +3,4 @@ app/db.sqlite3
 *.pyc
 *.jpg
 *.png
+!app/static/**/*[.jpg, .png]
