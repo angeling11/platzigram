@@ -13,7 +13,7 @@ from users.models import Profile
 from users.forms import SignupForm
 
 
-class UserDetailView(LoginRequiredMixin, DetailView):
+class UserDetailView(DetailView):
     """User detail view."""
     template_name = 'users/detail.html'
     slug_field = 'username'

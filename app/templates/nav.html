@@ -4,6 +4,7 @@
         <a href="{% url 'posts:feed' %}" class="navbar-brand pe-5" style="border-right: 1px solid #efefef;">
             <img src="{% static 'img/instagram.png' %}" height="45" class="d-inline-block align-top">
         </a>
+        {% if request.user.is_authenticated %}
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
@@ -27,5 +28,6 @@
                 </li>
             </ul>
         </div>
+        {% endif %}
     </div>
 </nav>

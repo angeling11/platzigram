@@ -10,7 +10,7 @@ from posts.forms import PostForm
 from posts.models import Post
 
 
-class PostFeedView(LoginRequiredMixin, ListView):
+class PostFeedView(ListView):
     """Return all published posts."""
     template_name = 'posts/feed.html'
     model = Post
@@ -19,7 +19,7 @@ class PostFeedView(LoginRequiredMixin, ListView):
     context_object_name = 'posts'
 
 
-class PostDetailView(LoginRequiredMixin, DetailView):
+class PostDetailView(DetailView):
     """Return post details."""
     template_name = 'posts/detail.html'
     queryset = Post.objects.all()
