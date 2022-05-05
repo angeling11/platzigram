@@ -1,7 +1,10 @@
 # Platzigram
 
 Django project developed during django's course at platzi.
-This is the app developed with some changes and improvements made by me. The most important was to dockerize the application.
+This is the app developed with some changes and improvements made by me. The most important was to dockerize the application:
+
+- Development environment.
+- Production environment with multi-stage builds.
 
 ## Development environment
 
@@ -27,10 +30,26 @@ docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --no
 docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --no-input --clear
 ```
 
-*To start the project for development purposes:*
+*To stop the project in production environment:*
 
 ```bash
 docker-compose -f docker-compose.prod.yml down -v
+```
+
+### Reuse volumes
+
+*To start the project:*
+
+```bash
+docker-compose -f docker-compose.prod.yml -p proj1 up -d --build
+docker-compose -f docker-compose.prod.yml -p proj1 exec web python manage.py migrate --noinput
+docker-compose -f docker-compose.prod.yml -p proj1 exec web python manage.py collectstatic --no-input --clear
+```
+
+*To stop the project:*
+
+```bash
+docker-compose -f docker-compose.prod.yml -p proj1 down
 ```
 
 ### Troubleshooting
