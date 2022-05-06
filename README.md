@@ -73,6 +73,12 @@ docker-compose [-f docker-compose.prod.yml] logs -f
 - Verify the required fields for a user to see the feed.
 - Implement a pipeline for automatic CI/CD after a change.
 
+## Demo
+
+Basic demo without authentication:
+
+[Platzigram](http://platzigram.natryvat.com/)
+
 ## Author
 
 natryvat
