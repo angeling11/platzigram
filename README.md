@@ -22,6 +22,14 @@ docker-compose down -v
 
 ## Production environment
 
+Fill up `.env.prod` and `.env.prod.db` files.
+
+To create a new Django *SECRET_KEY* you ca use following command:
+
+```bash
+python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+```
+
 *To start the project on production:*
 
 ```bash
